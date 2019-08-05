@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FutureWeatherViewController.swift
 //  mmakosCoolsApp
 //
 //  Created by Mmako Sekhosana on 2019/07/30.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FutureWeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+       self.navigationItem.title = "Future Weather"
     }
-
-
 }
-
