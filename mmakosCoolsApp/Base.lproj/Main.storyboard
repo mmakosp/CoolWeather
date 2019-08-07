@@ -39,7 +39,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Manage Cities"/>
                                 <connections>
-                                    <segue destination="Rhb-FO-Lez" kind="show" identifier="SequeFromMasterToManageCities" id="ZSB-Ph-eNF"/>
+                                    <segue destination="KOR-V8-T1q" kind="show" identifier="SegueFromMasterToManageCities" id="rrW-hp-Prp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tED-0T-Dqf" userLabel="Future Weather Forecasts">
@@ -79,33 +79,50 @@
             </objects>
             <point key="canvasLocation" x="862" y="-102"/>
         </scene>
-        <!--Manage Cities Table View Controller-->
-        <scene sceneID="Dh5-Ia-auG">
+        <!--Manage Cities View Controller-->
+        <scene sceneID="FwZ-cw-0xX">
             <objects>
-                <tableViewController id="Rhb-FO-Lez" customClass="ManageCitiesTableViewController" customModule="mmakosCoolsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="h1t-DJ-RX9">
+                <viewController id="KOR-V8-T1q" userLabel="Manage Cities View Controller" customClass="ManageCitiesViewController" customModule="mmakosCoolsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="San-xP-fXt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09S-4P-uX3" userLabel="Add City Button">
+                                <rect key="frame" x="102" y="808" width="210" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add City">
+                                    <color key="titleShadowColor" red="1" green="0.24037923950000001" blue="0.46264764400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="azq-WX-Bsy" kind="show" identifier="SegueFromManageCitiesToAddCities" id="dYE-Sa-f64"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="98q-fU-sCw"/>
+                    </view>
+                    <connections>
+                        <outlet property="addCitiesButton" destination="09S-4P-uX3" id="G6t-8y-Tuc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wfA-Sg-wIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1840.5797101449277" y="-102.45535714285714"/>
+        </scene>
+        <!--Add Cities View Controller-->
+        <scene sceneID="FEo-ar-b4o">
+            <objects>
+                <viewController id="azq-WX-Bsy" userLabel="Add Cities View Controller" customClass="AddCitiesViewController" customModule="mmakosCoolsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lFA-YA-R7o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="F06-iZ-rMj">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F06-iZ-rMj" id="s5t-kZ-9IC">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Rhb-FO-Lez" id="Pkh-8B-mXM"/>
-                            <outlet property="delegate" destination="Rhb-FO-Lez" id="Opg-6J-0LO"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J3a-Vi-mht" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <viewLayoutGuide key="safeArea" id="Ug8-B8-vkS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g9n-QX-hbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="-1127"/>
+            <point key="canvasLocation" x="2712" y="-110"/>
         </scene>
     </scenes>
 </document>

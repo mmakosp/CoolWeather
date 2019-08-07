@@ -64,10 +64,6 @@ class MasterViewController: UIViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // etc
     }
-    
-    @IBAction func buttonManageCities(_ sender: UIButton) {
-        performSegue(withIdentifier: "SequeFromMasterToManageCities", sender: self)
-    }
     @IBAction func buttonPresentFutureWeather(_ sender: UIButton) {
         performSegue(withIdentifier: "SegueFromMasterToFuture", sender: self)
         
