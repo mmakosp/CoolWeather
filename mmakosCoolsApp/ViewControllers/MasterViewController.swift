@@ -18,7 +18,7 @@ class MasterViewController: UIViewController {
         
         // Fetch Weather Data
         dataManager.weatherDataForLocation(latitude: Defaults.Latitude, longitude: Defaults.Longitude) { (response, error) in
-            print(response)
+            print(response as Any)
         }
         
         self.view.backgroundColor = UIColor.blue
