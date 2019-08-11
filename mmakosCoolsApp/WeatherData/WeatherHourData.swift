@@ -8,31 +8,57 @@
 
 import Foundation
 
-public struct WeatherHourData {
+class WeatherDataModel {
     
-    public let time: Date
-    public let windSpeed: Int
-    public let temperature: Double
-    public let precipitation: Double
+    //Declare your model variables here
+    var temperature : Int = 0
+    var condition : Int = 0
+    var city : String = ""
+    var weatherIconName : String = ""
     
-    public init(time: Date, windSpeed: Int, temperature: Double, precipitation: Double) {
-        self.time = time
-        self.windSpeed = windSpeed
-        self.temperature = temperature
-        self.precipitation = precipitation
-    }
     
-}
-
-extension WeatherHourData: JSONDecodable {
+    //This method turns a condition code into the name of the weather condition image
     
-    public init(decoder: JSONDecoder) throws {
-        self.windSpeed = try decoder.decode(key: "windSpeed")
-        self.temperature = try decoder.decode(key: "temperature")
-        self.precipitation = try decoder.decode(key: "precipIntensity")
+    func updateWeatherIcon(condition: Int) -> String {
         
-        let time: Double = try decoder.decode(key: "time")
-        self.time = Date(timeIntervalSince1970: time)
+        switch (condition) {
+            
+        case 0...300 :
+            return "tstorm1"
+            
+        case 301...500 :
+            return "light_rain"
+            
+        case 501...600 :
+            return "shower3"
+            
+        case 601...700 :
+            return "snow4"
+            
+        case 701...771 :
+            return "fog"
+            
+        case 772...799 :
+            return "tstorm3"
+            
+        case 800 :
+            return "sunny"
+            
+        case 801...804 :
+            return "cloudy2"
+            
+        case 900...903, 905...1000  :
+            return "tstorm3"
+            
+        case 903 :
+            return "snow5"
+            
+        case 904 :
+            return "sunny"
+            
+        default :
+            return "dunno"
+        }
+        
     }
-    
 }
