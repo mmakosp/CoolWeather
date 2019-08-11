@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
     
+    let locationManager = CLLocationManager()
+    let dataManager = DataManager()
+    let config = Config()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 34
@@ -34,6 +38,12 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
         // add the table view to self.view
         self.view.addSubview(citiesTableView)
         setupCitiesTableView()
+        
+        //TODO:Set up the location manager here.
+        locationManager.delegate = self as? CLLocationManagerDelegate
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
     }
     
@@ -86,6 +96,17 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
         tableView.separatorColor = UIColor.white
         return tableView
     }()
+    
+    
+    //Write the userEnteredANewCityName Delegate method here:
+    func userEnteredANewCityName(city: String) {
+        
+        let params : [String : String] = ["q" : city, "appid" : config.APP_ID]
+        
+        dataManager.getWeatherData(url: config.WEATHER_URL, parameters: params)
+        
+    }
+    
 
 }
 

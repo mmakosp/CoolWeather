@@ -8,14 +8,11 @@
 
 import Foundation
 
-struct API {
+public class Config {
     
-    static let APIKey = "4fa9b99cde25c19f78dbff9311e7b75a"
-    static let BaseURL = URL(string: "https://api.darksky.net/forecast/")!
-    
-    static var AuthenticatedBaseURL: URL {
-        return BaseURL.appendingPathComponent(APIKey)
-    }
+    //Constants
+    let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
+    let APP_ID = "e72ca729af228beabd5d20e3b7749713"
 
 }
 
