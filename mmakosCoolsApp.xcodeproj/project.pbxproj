@@ -22,6 +22,9 @@
 		68F9CFCD22F0EC7900E395C7 /* mmakosCoolsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F9CFCC22F0EC7900E395C7 /* mmakosCoolsAppUITests.swift */; };
 		68F9CFDB22F0ED8A00E395C7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F9CFDA22F0ED8A00E395C7 /* MasterViewController.swift */; };
 		68F9CFDD22F0F28100E395C7 /* FutureWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F9CFDC22F0F28100E395C7 /* FutureWeatherViewController.swift */; };
+		7885E9360B7383365436EB8D /* Pods_mmakosCoolsAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65823F9D94D1E348B4259B15 /* Pods_mmakosCoolsAppUITests.framework */; };
+		7FE285D1EC3DBF3CF30F49C0 /* Pods_mmakosCoolsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 967C9FFD8DEB06FBA5A3FD31 /* Pods_mmakosCoolsAppTests.framework */; };
+		8AE491E2B30C3797DDBDC0B2 /* Pods_mmakosCoolsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB293A993AE0A08504E7FA2C /* Pods_mmakosCoolsApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19BD4592DB42977B85389FBF /* Pods-mmakosCoolsAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mmakosCoolsAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-mmakosCoolsAppUITests/Pods-mmakosCoolsAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		19CBBCC42BBB662182C5744D /* Pods-mmakosCoolsAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mmakosCoolsAppTests.debug.xcconfig"; path = "Target Support Files/Pods-mmakosCoolsAppTests/Pods-mmakosCoolsAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		65823F9D94D1E348B4259B15 /* Pods_mmakosCoolsAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mmakosCoolsAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68414EA022F7895700267559 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		68414EA222F78A3E00267559 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		68414EA522F7929A00267559 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
@@ -63,6 +69,12 @@
 		68F9CFCE22F0EC7900E395C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68F9CFDA22F0ED8A00E395C7 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		68F9CFDC22F0F28100E395C7 /* FutureWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureWeatherViewController.swift; sourceTree = "<group>"; };
+		7B8376A9A36F637EDF6753F2 /* Pods-mmakosCoolsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mmakosCoolsAppTests.release.xcconfig"; path = "Target Support Files/Pods-mmakosCoolsAppTests/Pods-mmakosCoolsAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		91996D5288A13990998B7794 /* Pods-mmakosCoolsAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mmakosCoolsAppUITests.release.xcconfig"; path = "Target Support Files/Pods-mmakosCoolsAppUITests/Pods-mmakosCoolsAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		967C9FFD8DEB06FBA5A3FD31 /* Pods_mmakosCoolsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mmakosCoolsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C174A1FBB4FD2B6DC22AA7B /* Pods-mmakosCoolsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mmakosCoolsApp.debug.xcconfig"; path = "Target Support Files/Pods-mmakosCoolsApp/Pods-mmakosCoolsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		AB293A993AE0A08504E7FA2C /* Pods_mmakosCoolsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mmakosCoolsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C657E7510CB3FE160ACE5EE2 /* Pods-mmakosCoolsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mmakosCoolsApp.release.xcconfig"; path = "Target Support Files/Pods-mmakosCoolsApp/Pods-mmakosCoolsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AE491E2B30C3797DDBDC0B2 /* Pods_mmakosCoolsApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FE285D1EC3DBF3CF30F49C0 /* Pods_mmakosCoolsAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7885E9360B7383365436EB8D /* Pods_mmakosCoolsAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +150,8 @@
 				68F9CFC022F0EC7900E395C7 /* mmakosCoolsAppTests */,
 				68F9CFCB22F0EC7900E395C7 /* mmakosCoolsAppUITests */,
 				68F9CFAA22F0EC7700E395C7 /* Products */,
+				D72B802EA2527BD550F940D3 /* Pods */,
+				8229359F2AEF711703EB91B6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,6 +198,30 @@
 			path = mmakosCoolsAppUITests;
 			sourceTree = "<group>";
 		};
+		8229359F2AEF711703EB91B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB293A993AE0A08504E7FA2C /* Pods_mmakosCoolsApp.framework */,
+				967C9FFD8DEB06FBA5A3FD31 /* Pods_mmakosCoolsAppTests.framework */,
+				65823F9D94D1E348B4259B15 /* Pods_mmakosCoolsAppUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D72B802EA2527BD550F940D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9C174A1FBB4FD2B6DC22AA7B /* Pods-mmakosCoolsApp.debug.xcconfig */,
+				C657E7510CB3FE160ACE5EE2 /* Pods-mmakosCoolsApp.release.xcconfig */,
+				19CBBCC42BBB662182C5744D /* Pods-mmakosCoolsAppTests.debug.xcconfig */,
+				7B8376A9A36F637EDF6753F2 /* Pods-mmakosCoolsAppTests.release.xcconfig */,
+				19BD4592DB42977B85389FBF /* Pods-mmakosCoolsAppUITests.debug.xcconfig */,
+				91996D5288A13990998B7794 /* Pods-mmakosCoolsAppUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,9 +229,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68F9CFD122F0EC7900E395C7 /* Build configuration list for PBXNativeTarget "mmakosCoolsApp" */;
 			buildPhases = (
+				0B940AF26A28B4A2B08E140A /* [CP] Check Pods Manifest.lock */,
 				68F9CFA522F0EC7700E395C7 /* Sources */,
 				68F9CFA622F0EC7700E395C7 /* Frameworks */,
 				68F9CFA722F0EC7700E395C7 /* Resources */,
+				5597ED34CD43A0D458604E96 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,6 +248,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68F9CFD422F0EC7900E395C7 /* Build configuration list for PBXNativeTarget "mmakosCoolsAppTests" */;
 			buildPhases = (
+				95B744F1E3AFB11F114DEEF4 /* [CP] Check Pods Manifest.lock */,
 				68F9CFB922F0EC7900E395C7 /* Sources */,
 				68F9CFBA22F0EC7900E395C7 /* Frameworks */,
 				68F9CFBB22F0EC7900E395C7 /* Resources */,
@@ -223,6 +267,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68F9CFD722F0EC7900E395C7 /* Build configuration list for PBXNativeTarget "mmakosCoolsAppUITests" */;
 			buildPhases = (
+				B33C90895B4A25D3BDD0C3B6 /* [CP] Check Pods Manifest.lock */,
 				68F9CFC422F0EC7900E395C7 /* Sources */,
 				68F9CFC522F0EC7900E395C7 /* Frameworks */,
 				68F9CFC622F0EC7900E395C7 /* Resources */,
@@ -306,6 +351,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B940AF26A28B4A2B08E140A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mmakosCoolsApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5597ED34CD43A0D458604E96 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mmakosCoolsApp/Pods-mmakosCoolsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mmakosCoolsApp/Pods-mmakosCoolsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mmakosCoolsApp/Pods-mmakosCoolsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95B744F1E3AFB11F114DEEF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mmakosCoolsAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B33C90895B4A25D3BDD0C3B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mmakosCoolsAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		68F9CFA522F0EC7700E395C7 /* Sources */ = {
@@ -494,6 +625,7 @@
 		};
 		68F9CFD222F0EC7900E395C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C174A1FBB4FD2B6DC22AA7B /* Pods-mmakosCoolsApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -513,6 +645,7 @@
 		};
 		68F9CFD322F0EC7900E395C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C657E7510CB3FE160ACE5EE2 /* Pods-mmakosCoolsApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +665,7 @@
 		};
 		68F9CFD522F0EC7900E395C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19CBBCC42BBB662182C5744D /* Pods-mmakosCoolsAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -553,6 +687,7 @@
 		};
 		68F9CFD622F0EC7900E395C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B8376A9A36F637EDF6753F2 /* Pods-mmakosCoolsAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -574,6 +709,7 @@
 		};
 		68F9CFD822F0EC7900E395C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19BD4592DB42977B85389FBF /* Pods-mmakosCoolsAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -594,6 +730,7 @@
 		};
 		68F9CFD922F0EC7900E395C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91996D5288A13990998B7794 /* Pods-mmakosCoolsAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
