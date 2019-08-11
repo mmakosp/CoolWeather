@@ -74,5 +74,13 @@ class MasterViewController: UIViewController {
         t.translatesAutoresizingMaskIntoConstraints = false
         return t
     }()
+    
+    func updateUIWithWeatherData() {
+        
+//        cityLabel.text = weatherDataModel.city
+//        temperatureLabel.text = "\(weatherDataModel.temperature)°"
+//        weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+        
+    }
 }
 
