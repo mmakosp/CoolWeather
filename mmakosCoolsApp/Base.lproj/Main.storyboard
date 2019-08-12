@@ -51,12 +51,20 @@
                                     <action selector="buttonPresentFutureWeather:" destination="vm4-1E-gMH" eventType="touchUpInside" id="lkb-AY-0eQ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="cityLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYN-mU-Lhw" userLabel="City">
+                                <rect key="frame" x="78" y="151" width="227" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" red="1" green="0.24037923950000001" blue="0.46264764400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nnR-IM-D20"/>
                     </view>
                     <navigationItem key="navigationItem" id="4l8-Iz-QGL"/>
                     <connections>
+                        <outlet property="cityLabel" destination="uYN-mU-Lhw" id="R0j-jT-WB0"/>
                         <segue destination="qeb-YQ-urq" kind="show" identifier="SegueFromMasterToFuture" id="A22-L8-KRQ"/>
                     </connections>
                 </viewController>

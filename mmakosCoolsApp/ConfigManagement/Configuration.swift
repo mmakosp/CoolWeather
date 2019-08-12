@@ -12,13 +12,13 @@ public class Config {
     
     //Constants
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
-    let APP_ID = "e72ca729af228beabd5d20e3b7749713"
+    let APP_ID = "9d288c79d406e05680f9b9ea1c3de69c"
 
 }
 
 struct Defaults {
     
-    static let Latitude: Double = 37.8267
-    static let Longitude: Double = -122.423
+    static let Latitude: String = "37.8267"
+    static let Longitude: String = "-122.423"
     
 }

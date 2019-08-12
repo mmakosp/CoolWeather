@@ -44,6 +44,7 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        userEnteredANewCityName(city: "Pretoria")
         
     }
     
@@ -100,6 +101,10 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
     
     //Write the userEnteredANewCityName Delegate method here:
     func userEnteredANewCityName(city: String) {
+        
+//        let params2 : [String : String] = ["lat" : Defaults.Latitude, "lon" : Defaults.Longitude, "appid" : config.APP_ID]
+        
+        //dataManager.getWeatherData(url: config.WEATHER_URL, parameters: params)
         
         let params : [String : String] = ["q" : city, "appid" : config.APP_ID]
         

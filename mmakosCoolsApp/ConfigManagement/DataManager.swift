@@ -21,8 +21,7 @@ enum DataManagerError: Error {
 public class DataManager {
     
     //TODO: Declare instance variables here
-    //let locationManager = CLLocationManager()
-    //let weatherDataModel = WeatherDataModel()
+    let weatherDataModel = WeatherDataModel()
     let masterClass = MasterViewController()
     let config = Config()
     
