@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68305AD42308199800F8E047 /* CurrentWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68305AD32308199800F8E047 /* CurrentWeatherTableViewCell.swift */; };
 		68414EA122F7895700267559 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68414EA022F7895700267559 /* Configuration.swift */; };
 		68414EA322F78A3E00267559 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68414EA222F78A3E00267559 /* DataManager.swift */; };
 		68414EA822F7930B00267559 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68414EA722F7930B00267559 /* WeatherDataModel.swift */; };
@@ -47,6 +48,7 @@
 		19BD4592DB42977B85389FBF /* Pods-mmakosCoolsAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mmakosCoolsAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-mmakosCoolsAppUITests/Pods-mmakosCoolsAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		19CBBCC42BBB662182C5744D /* Pods-mmakosCoolsAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mmakosCoolsAppTests.debug.xcconfig"; path = "Target Support Files/Pods-mmakosCoolsAppTests/Pods-mmakosCoolsAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		65823F9D94D1E348B4259B15 /* Pods_mmakosCoolsAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mmakosCoolsAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68305AD32308199800F8E047 /* CurrentWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		68414EA022F7895700267559 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		68414EA222F78A3E00267559 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		68414EA722F7930B00267559 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
@@ -103,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68305AD02308184F00F8E047 /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				68305AD32308199800F8E047 /* CurrentWeatherTableViewCell.swift */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
 		68414E9F22F7893600267559 /* ConfigManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 		68F9CFAB22F0EC7700E395C7 /* mmakosCoolsApp */ = {
 			isa = PBXGroup;
 			children = (
+				68305AD02308184F00F8E047 /* ViewCells */,
 				68B777BF22F8ADE30079DBCA /* Delegates */,
 				68B777BC22F87A690079DBCA /* ViewControllers */,
 				68414EA422F7927700267559 /* WeatherData */,
@@ -445,6 +456,7 @@
 				68414EA322F78A3E00267559 /* DataManager.swift in Sources */,
 				68B777C322FB61800079DBCA /* AddCitiesViewController.swift in Sources */,
 				68F9CFDD22F0F28100E395C7 /* FutureWeatherViewController.swift in Sources */,
+				68305AD42308199800F8E047 /* CurrentWeatherTableViewCell.swift in Sources */,
 				68F9CFDB22F0ED8A00E395C7 /* MasterViewController.swift in Sources */,
 				68B777C122FB27940079DBCA /* ManageCitiesViewController.swift in Sources */,
 				68F9CFAD22F0EC7700E395C7 /* AppDelegate.swift in Sources */,

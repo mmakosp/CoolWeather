@@ -11,7 +11,19 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 
-class MasterViewController: UIViewController {
+class MasterViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = currentWeatherTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CurrentWeatherTableViewCell
+        cell.backgroundColor = UIColor.white
+        cell.dayLabel.text = "Day \(indexPath.row+1)"
+        return cell
+    }
+    
     
     //let dataManager = DataManager()
 
@@ -19,14 +31,33 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
        self.navigationItem.title = "Home Screen";
         
-        self.view.backgroundColor = UIColor.blue
+        self.view.backgroundColor = UIColor.white
         //TODO:Set up the location manager here.
         
         locationManager.delegate = self as? CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        cityLabel.text = weatherDataModel.city
+        //cityLabel.text = weatherDataModel.city
+        self.view.addSubview(currentWeatherTableView)
+        setupCurrentWeatherTableView()
+    }
+    
+    func setupCurrentWeatherTableView() {
+        currentWeatherTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0).isActive = true
+        currentWeatherTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150.0).isActive = true
+        currentWeatherTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0).isActive = true
+        currentWeatherTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90.0).isActive = true
+        
+        
+        
+        // set delegate and datasource
+        currentWeatherTableView.delegate = self
+        currentWeatherTableView.dataSource = self
+        
+        // register a defalut cell
+        currentWeatherTableView.register(CurrentWeatherTableViewCell.self, forCellReuseIdentifier: "cellId")
+        self.currentWeatherTableView.tableFooterView = UIView()
     }
     
     @IBAction func buttonPresentFutureWeather(_ sender: UIButton) {
@@ -47,5 +78,15 @@ class MasterViewController: UIViewController {
         print(error)
         cityLabel.text = weatherDataModel.city
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    let currentWeatherTableView : UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorColor = UIColor.white
+        return tableView
+    }()
 }
-

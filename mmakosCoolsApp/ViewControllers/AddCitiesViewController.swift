@@ -41,7 +41,7 @@ class AddCitiesViewController: UIViewController, UITableViewDelegate,  UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CityCell
         
         if (resultSearchController.isActive) {
             cell.textLabel?.text = filteredTableData[indexPath.row]
