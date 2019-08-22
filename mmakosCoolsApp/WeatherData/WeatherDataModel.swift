@@ -13,7 +13,7 @@ class WeatherDataModel {
     //Declare your model variables here
     var temperature : Int = 0
     var condition : Int = 0
-    var city : String = ""
+    var city : String = "Pretoria"
     var weatherIconName : String = ""
     
     

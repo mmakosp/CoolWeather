@@ -8,8 +8,16 @@
 
 import UIKit
 
+enum FontSize: Int {
+    case normal
+    case normalBold
+    case bigsize
+}
+
 class CurrentWeatherTableViewCell: UITableViewCell {
 
+    let dataModel = WeatherDataModel()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -37,19 +45,44 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         return view
     }()
     
-    let dayLabel: UILabel = {
+    let weatherComponentLabel: UILabel = {
         let label = UILabel()
-        label.text = "Day 1"
         label.textColor = UIColor.white
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 21)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
         return label
     }()
+    
+    func updateWeatherLabels(indexNumber: Int) -> String {
+        switch indexNumber {
+        case 0:
+            return dataModel.city
+        case 1:
+            return "08:06"
+        case 2:
+            return "26"
+        default:
+            return "N/A"
+        }
+    }
+    
+    func asFont(indexNumber: Int) -> UIFont {
+        
+        switch indexNumber {
+        case 0:
+            return UIFont.boldSystemFont(ofSize: 16)
+        case 2:
+            return UIFont.boldSystemFont(ofSize: 56)
+        default :
+            return UIFont.systemFont(ofSize: 16)
+        }
+    }
     
     func setupCitiesViewCells() {
         addSubview(cellView)
         
-        cellView.addSubview(dayLabel)
+        cellView.addSubview(weatherComponentLabel)
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
@@ -59,9 +92,10 @@ class CurrentWeatherTableViewCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             ])
         
-        dayLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        dayLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-        dayLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        weatherComponentLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        weatherComponentLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        weatherComponentLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
+        weatherComponentLabel.centerXAnchor.constraint(equalTo: cellView.centerXAnchor).isActive = true
+        weatherComponentLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
     }
 }

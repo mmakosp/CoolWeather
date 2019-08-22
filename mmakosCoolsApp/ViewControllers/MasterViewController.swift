@@ -19,8 +19,10 @@ class MasterViewController: UIViewController, UITableViewDelegate,  UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = currentWeatherTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CurrentWeatherTableViewCell
-        cell.backgroundColor = UIColor.white
-        cell.dayLabel.text = "Day \(indexPath.row+1)"
+        cell.backgroundColor = UIColor.gray
+        cell.weatherComponentLabel.text = cell.updateWeatherLabels(indexNumber: indexPath.row)
+        cell.weatherComponentLabel.font = cell.asFont(indexNumber: indexPath.row)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }
     
@@ -86,7 +88,7 @@ class MasterViewController: UIViewController, UITableViewDelegate,  UITableViewD
     let currentWeatherTableView : UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorColor = UIColor.white
+        tableView.separatorColor = UIColor.clear
         return tableView
     }()
 }
