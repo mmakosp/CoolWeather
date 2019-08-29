@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Foundation
+import Alamofire
+import SwiftyJSON
 
 enum FontSize: Int {
     case normal
@@ -14,24 +17,36 @@ enum FontSize: Int {
     case bigsize
 }
 
-class CurrentWeatherTableViewCell: UITableViewCell {
-
-    let dataModel = WeatherDataModel()
+public class CurrentWeatherTableViewCell: UITableViewCell {
     
-    override func awakeFromNib() {
+    let weatherDataModel = WeatherDataModel()
+    let config = Config()
+    var temperature : Int = 0
+    var condition : String = ""
+    var city : String = "Pretoria"
+    var minTemp : Int = 0
+    var maxTemp : Int = 0
+    var weatherTime : String = ""
+    let masterVC = MasterViewController()
+    
+    var temperatureVar: Int = {
+        let tempString = Int()
+        return tempString
+    }()
+
+    
+    override public func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    override public func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCitiesViewCells()
+        getUpdateWeather(city: MasterViewController.currentCity)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,28 +55,86 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     let cellView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     let weatherComponentLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.white
+        label.textColor = UIColor.gray
         label.font = UIFont.boldSystemFont(ofSize: 21)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         return label
     }()
     
+    func getUpdateWeather(city: String) {
+        
+        let params : [String : String] = ["q" : city, "appid" : config.APP_ID]
+        
+        getWeatherData(url: config.WEATHER_URL, parameters: params)
+    }
+    
+    func getWeatherData(url: String, parameters: [String: String]) {
+        
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
+            response in
+            if response.result.isSuccess {
+                
+                print("Success! Got the weather data")
+                let weatherJSON : JSON = JSON(response.result.value!)
+                
+                
+                print(weatherJSON)
+                
+                self.updateWeatherData(json: weatherJSON)
+                
+            }
+            else {
+                print("Error \(String(describing: response.result.error))")
+                //self.weatherDataModel.city = "Check your Internet Connection"
+            }
+        }
+        
+    }
+    
+    func updateWeatherData(json : JSON) {
+        
+        
+        temperatureVar = Int(convertTempToCelcius(convertTemp: json["main"]["temp"].doubleValue))
+        
+        city = json["name"].stringValue
+        
+        condition = json["weather"][0]["description"].stringValue
+        
+        minTemp = Int(convertTempToCelcius(convertTemp: json["main"]["temp_min"].doubleValue))
+        
+        maxTemp = Int(convertTempToCelcius(convertTemp: json["main"]["temp_max"].doubleValue))
+        
+        //weatherTime = UTCToLocal(date: json["dt"].intValue)
+        
+    }
+    
+    func convertTempToCelcius(convertTemp : Double) -> Double{
+        return (convertTemp - 273.15)
+    }
+    
     func updateWeatherLabels(indexNumber: Int) -> String {
+        
         switch indexNumber {
         case 0:
-            return dataModel.city
+            return "City \(city)"
         case 1:
-            return "08:06"
+            return "Time : --:--"
         case 2:
-            return "26"
+            return "\(temperatureVar) °C"
+        case 3:
+            return "Min : \(minTemp)"
+        case 4:
+            return "Max : \(maxTemp)"
+        case 5:
+            return "Condition : \(condition)"
         default:
             return "N/A"
         }
@@ -81,7 +154,6 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     func setupCitiesViewCells() {
         addSubview(cellView)
-        
         cellView.addSubview(weatherComponentLabel)
         self.selectionStyle = .none
         

@@ -7,109 +7,112 @@
 //
 
 import UIKit
+import RealmSwift
+import Realm
 
-class AddCitiesViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource, UISearchResultsUpdating {
+class AddCitiesViewController: UIViewController, UITextFieldDelegate {
     
     let cities = ["One","Two","Three","Twenty-One"]
-    var filteredTableData = [String]()
-    var resultSearchController = UISearchController()
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // 1
-        // return the number of sections
-        return 1
-    }
+    var citi = [CityData]()
+    let realm = try? Realm()
+    let realmManager = RealmManager()
+    var cityData : CityData?
+    var isEditingData : Bool = false
     
-    func updateSearchResults(for searchController: UISearchController) {
-        filteredTableData.removeAll(keepingCapacity: false)
-        
-        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
-        let array = (cities as NSArray).filtered(using: searchPredicate)
-        filteredTableData = array as! [String]
-        
-        self.citiesResultsTableView.reloadData()
-    }
+    let newCityTextField : UITextField! = {
+        let textField = UITextField(frame: CGRect(x: 70, y: 300, width: 300.00, height: 70));
+        textField.placeholder = "Enter your city here"
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.textColor = UIColor.gray
+        textField.resignFirstResponder()
+        return textField
+    }()
     
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // return the number of rows
-        if  (resultSearchController.isActive) {
-            return filteredTableData.count
-        } else {
-            return cities.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CityCell
-        
-        if (resultSearchController.isActive) {
-            cell.textLabel?.text = filteredTableData[indexPath.row]
-            
-            return cell
-        }
-        else {
-            cell.textLabel?.text = cities[indexPath.row]
-            print(cities[indexPath.row])
-            return cell
-        }
-    }
-    
+    let saveCityButton : UIButton = {
+        let button = UIButton(frame: CGRect(x: 70, y: 400, width: 300, height: 70))
+        button.backgroundColor = .gray
+        button.setTitle("Add city to favourites", for: .normal)
+        button.addTarget(self, action: #selector(saveCityButtonAction), for: .touchUpInside)
+        return button
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupSearchController()
-
+        newCityTextField.text = cityData?.cityName ?? ""
+        
         self.navigationItem.title = "Add Cities"
-        self.view.addSubview(citiesResultsTableView)
-        setupCitiesResultsTableView()
+        self.view.addSubview(newCityTextField)
+        self.view.addSubview(saveCityButton)
         
-        // Reload the table
-        citiesResultsTableView.reloadData()
+        self.newCityTextField.delegate = self
+        
+        saveCityButton.center.x = self.view.center.x
+        saveCityButton.center.y = self.view.center.y
+        
+        
+        newCityTextField.center.x = self.view.center.x
+        newCityTextField.frame.origin.y = saveCityButton.frame.origin.y - (newCityTextField.frame.height) - 45
+        
+        
     }
     
-    func setupCitiesResultsTableView() {
+    func addAlertAfterSave() {
+        let alertController = UIAlertController(title: "New city", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
-        citiesResultsTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32.0).isActive = true
-        citiesResultsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120.0).isActive = true
-        citiesResultsTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -32.0).isActive = true
-        citiesResultsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90.0).isActive = true
+        let newcityAction = UIAlertAction(title: "Add \(newCityTextField.text!) to your favourites", style: .default, handler: {(alert: UIAlertAction!) in
+            self.addNewCity()})
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(alert: UIAlertAction!) in })
         
+        alertController.addAction(newcityAction)
+        alertController.addAction(cancelAction)
         
-        // set delegate and datasource
-        citiesResultsTableView.delegate = self
-        citiesResultsTableView.dataSource = self
-        
-        // register a defalut cell
-        citiesResultsTableView.register(CityCell.self, forCellReuseIdentifier: "cellId")
-        self.citiesResultsTableView.tableFooterView = UIView()
+        self.present(alertController, animated: true, completion:{})
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
-    func setupSearchController() {
-        resultSearchController = ({
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
-            controller.dimsBackgroundDuringPresentation = false
-            controller.searchBar.sizeToFit()
-            controller.searchBar.placeholder = "Find your city"
-            citiesResultsTableView.tableHeaderView = controller.searchBar
-            
-            return controller
-        })()
+    @objc func saveCityButtonAction(sender: UIButton!) {
+        if newCityTextField.text?.count == 0 {
+            showEmptyCityAlert()
+            return
+        }
+        addAlertAfterSave()
     }
     
-    let citiesResultsTableView : UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorColor = UIColor.white
-        return tableView
-    }()
+    func addNewCity() {
+        
+        if isEditingData == true {
+            let newCityData = CityData(cityCode : (cityData?.cityCode)! , cityName : newCityTextField.text ?? "")
+            realmManager.editObjects(objs: newCityData)
+        }
+            // Adding the new city
+        else if isEditingData == false {
+            let cityCode = realmManager.incrementCityCode()
+            let newCityData = CityData(cityCode : cityCode , cityName : newCityTextField.text ?? "")
+            realmManager.saveCityObject(objs: newCityData)
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
     
-
+    func showEmptyCityAlert() {
+        let alertController = UIAlertController.init(title: "", message: "Please enter your city" , preferredStyle: .alert)
+        let logoutAction = UIAlertAction.init(title: "Ok", style: .default) { (action) in
+        }
+        alertController.addAction(logoutAction)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
 }

@@ -18,11 +18,11 @@
         </dict>
     </dict>
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>Program requires GPS to track cars and job orders</string>
+    <string>Gives you the best weather in your location</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Program requires GPS to track cars and job orders</string>
+    <string>Gives you the best weather in your location</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Program requires GPS to track cars and job orders</string>
+    <string>Gives you the best weather in your location</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

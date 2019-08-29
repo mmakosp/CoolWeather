@@ -37,7 +37,7 @@ public class DataManager {
                 
                 print(weatherJSON)
                 
-                //self.updateWeatherData(json: weatherJSON)
+                self.updateWeatherData(json: weatherJSON)
                 
             }
             else {
@@ -47,20 +47,38 @@ public class DataManager {
         }
         
     }
-//    func updateWeatherData(json : JSON) {
-//
-//        let tempResult = json["main"]["temp"].doubleValue
-//
-//        weatherDataModel.temperature = Int(tempResult - 273.15)
-//
-//        weatherDataModel.city = json["name"].stringValue
-//
-//        weatherDataModel.condition = json["weather"][0]["id"].intValue
-//
-//        weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
-//
-//        masterClass.updateUIWithWeatherData()
-//    }
+    func updateWeatherData(json : JSON) {
+
+        weatherDataModel.temperature = Int(convertTempToCelcius(convertTemp: json["main"]["temp"].doubleValue))
+
+        weatherDataModel.city = json["name"].stringValue
+
+        weatherDataModel.condition = json["weather"][0]["description"].stringValue
+        
+        weatherDataModel.minTemp = Int(convertTempToCelcius(convertTemp: json["main"]["temp_min"].doubleValue))
+        
+        weatherDataModel.maxTemp = Int(convertTempToCelcius(convertTemp: json["main"]["temp_max"].doubleValue))
+        
+        //weatherDataModel.weatherTime = UTCToLocal(date: json["dt"].intValue)
+
+        //masterClass.updateUIWithWeatherData()
+    }
+    
+    func UTCToLocal(date:Int) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "H:mm:ss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        
+        let dt = dateFormatter.date(from: String(date))
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "h:mm a"
+        
+        return dateFormatter.string(from: dt!)
+    }
+    
+    func convertTempToCelcius(convertTemp : Double) -> Double{
+        return (convertTemp - 273.15)
+    }
     
     //Write the didUpdateLocations method here:
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

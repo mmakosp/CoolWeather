@@ -8,23 +8,45 @@
 
 import UIKit
 import CoreLocation
+import Realm
+import RealmSwift
 
 class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
+    
+    let realmManager = RealmManager()
+    var cityArr  = [CityData]()
+    let realm = try? Realm()
+    
+    var selectedCityCell : String = ""
     
     let locationManager = CLLocationManager()
     let dataManager = DataManager()
     let config = Config()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 34
+        return cityArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cityToView = cityArr[indexPath.row]
         let cell = citiesTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CityCell
         cell.backgroundColor = UIColor.white
-        cell.dayLabel.text = "Day \(indexPath.row+1)"
+        cell.cityViewLabel.text = cityToView.cityName
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = tableView.cellForRow(at: indexPath) as! CityCell
+        selectedCityCell = currentCell.cityViewLabel.text!
+        userEnteredANewCityName(city: currentCell.cityViewLabel.text!)
+        MasterViewController.currentCity = selectedCityCell
+        
+        let masteVC = MasterViewController() 
+        masteVC.citynew = selectedCityCell
+        masteVC.currentWeatherTableView.reloadData()
+        self.navigationController?.popViewController(animated: true)
+    }
+
     
     
 
@@ -44,8 +66,35 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        userEnteredANewCityName(city: "Pretoria")
+        if let fileUrl = Realm.Configuration.defaultConfiguration.fileURL{
+            print("FILE URL IS",fileUrl)
+        }
         
+        getAllObjects()
+        self.citiesTableView.reloadData()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getAllObjects()
+        citiesTableView.reloadData()
+        setupCitiesTableView()
+        
+    }
+    
+    // fetch all the objects in table
+    func getAllObjects() {
+        cityArr = [CityData]()
+        if let objects = realmManager.getObjects(type: CityData.self) {
+            for element in objects {
+                if let citiData = element as? CityData {
+                    // Do whatever you like with 'person' object
+                     print("\(citiData.cityName), \(citiData.cityCode) ")
+                    cityArr.append(citiData)
+                }
+            }
+        }
     }
     
     func setupCitiesTableView() {
@@ -74,7 +123,7 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
         addCityButton.clipsToBounds = true
         addCityButton.setTitle("+", for: .normal)
         addCityButton.setTitleColor( .white, for: .normal)
-        addCityButton.backgroundColor = .gray
+        addCityButton.backgroundColor = .blue
         //addCitybutton.center = self.view.center
         setAddCityConstraints()
 
@@ -91,6 +140,23 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
         return 100
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            tableView.beginUpdates()
+            let citydata : CityData = cityArr[indexPath.row]
+            // delete an Object
+            realmManager.deleteObject(objs: citydata)
+            cityArr.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath],  with: UITableView.RowAnimation.automatic)
+            tableView.endUpdates()
+        }
+    }
+    
     let citiesTableView : UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -102,13 +168,9 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
     //Write the userEnteredANewCityName Delegate method here:
     func userEnteredANewCityName(city: String) {
         
-//        let params2 : [String : String] = ["lat" : Defaults.Latitude, "lon" : Defaults.Longitude, "appid" : config.APP_ID]
-        
-        //dataManager.getWeatherData(url: config.WEATHER_URL, parameters: params)
-        
         let params : [String : String] = ["q" : city, "appid" : config.APP_ID]
         
-        dataManager.getWeatherData(url: config.WEATHER_URL, parameters: params)
+        DataManager().getWeatherData(url: config.WEATHER_URL, parameters: params)
         
     }
     
@@ -128,13 +190,13 @@ class CityCell: UITableViewCell {
     
     let cellView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = UIColor.gray
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    let dayLabel: UILabel = {
+    let cityViewLabel: UILabel = {
         let label = UILabel()
         label.text = "Day 1"
         label.textColor = UIColor.white
@@ -146,7 +208,7 @@ class CityCell: UITableViewCell {
     func setupCitiesViewCells() {
         addSubview(cellView)
         
-        cellView.addSubview(dayLabel)
+        cellView.addSubview(cityViewLabel)
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
@@ -156,9 +218,9 @@ class CityCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             ])
         
-        dayLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        dayLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-        dayLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        cityViewLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        cityViewLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        cityViewLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
+        cityViewLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
     }
 }

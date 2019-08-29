@@ -17,8 +17,6 @@ public class Config {
 }
 
 struct Defaults {
-    
     static let Latitude: String = "37.8267"
     static let Longitude: String = "-122.423"
-    
 }

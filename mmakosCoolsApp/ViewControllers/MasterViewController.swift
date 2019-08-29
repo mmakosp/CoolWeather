@@ -13,13 +13,21 @@ import SwiftyJSON
 
 class MasterViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
     
+    let weatherDataModel = WeatherDataModel()
+    let config = Config()
+    let locationManager = CLLocationManager()
+    
+    
+    static var currentCity: String = "Pretoria"
+    var citynew = "Stout"
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = currentWeatherTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CurrentWeatherTableViewCell
-        cell.backgroundColor = UIColor.gray
+        cell.backgroundColor = UIColor.white
         cell.weatherComponentLabel.text = cell.updateWeatherLabels(indexNumber: indexPath.row)
         cell.weatherComponentLabel.font = cell.asFont(indexNumber: indexPath.row)
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -33,16 +41,24 @@ class MasterViewController: UIViewController, UITableViewDelegate,  UITableViewD
         super.viewDidLoad()
        self.navigationItem.title = "Home Screen";
         
-        self.view.backgroundColor = UIColor.white
-        //TODO:Set up the location manager here.
         
+        self.view.backgroundColor = UIColor.white
         locationManager.delegate = self as? CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        //cityLabel.text = weatherDataModel.city
         self.view.addSubview(currentWeatherTableView)
         setupCurrentWeatherTableView()
+        let citiesTBC = CurrentWeatherTableViewCell()
+        citiesTBC.setupCitiesViewCells()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        setupCurrentWeatherTableView()
+        currentWeatherTableView.reloadData()
+        
     }
     
     func setupCurrentWeatherTableView() {
@@ -60,6 +76,14 @@ class MasterViewController: UIViewController, UITableViewDelegate,  UITableViewD
         // register a defalut cell
         currentWeatherTableView.register(CurrentWeatherTableViewCell.self, forCellReuseIdentifier: "cellId")
         self.currentWeatherTableView.tableFooterView = UIView()
+        
+    }
+    
+    func getUpdateWeather(city: String) {
+        
+        let params : [String : String] = ["q" : city, "appid" : config.APP_ID]
+        
+        DataManager().getWeatherData(url: config.WEATHER_URL, parameters: params)
     }
     
     @IBAction func buttonPresentFutureWeather(_ sender: UIButton) {
@@ -67,19 +91,14 @@ class MasterViewController: UIViewController, UITableViewDelegate,  UITableViewD
         
     }
     
-    //TODO: Declare instance variables here
-    let locationManager = CLLocationManager()
-    let weatherDataModel = WeatherDataModel()
-    
-    
     @IBOutlet weak var cityLabel: UILabel!
     
     
     //Write the didFailWithError method here:
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-        cityLabel.text = weatherDataModel.city
-    }
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print(error)
+//        cityLabel.text = weatherDataModel.city
+//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100

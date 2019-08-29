@@ -9,6 +9,7 @@ target 'mmakosCoolsApp' do
   pod 'SwiftyJSON'
   pod 'Alamofire'
   pod 'SVProgressHUD'
+  pod 'RealmSwift'
 
   target 'mmakosCoolsAppTests' do
     inherit! :search_paths
