@@ -89,7 +89,6 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
         if let objects = realmManager.getObjects(type: CityData.self) {
             for element in objects {
                 if let citiData = element as? CityData {
-                    // Do whatever you like with 'person' object
                      print("\(citiData.cityName), \(citiData.cityCode) ")
                     cityArr.append(citiData)
                 }
@@ -146,7 +145,6 @@ class ManageCitiesViewController: UIViewController, UITableViewDelegate,  UITabl
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
             tableView.beginUpdates()
             let citydata : CityData = cityArr[indexPath.row]
             // delete an Object
