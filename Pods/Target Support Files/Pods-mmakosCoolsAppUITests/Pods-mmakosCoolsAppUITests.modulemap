@@ -1,0 +1,6 @@
+framework module Pods_mmakosCoolsAppUITests {
+  umbrella header "Pods-mmakosCoolsAppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
